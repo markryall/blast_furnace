@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+$: << File.dirname(__FILE__)+'/../lib'
+
+require 'blast_furnace/blaster'
+
+BlastFurnace::Blaster.new.blast

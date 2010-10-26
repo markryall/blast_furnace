@@ -1,0 +1,13 @@
+= Blast Furnace
+
+== Installation
+
+    gem install blast_furnace
+
+== Usage
+
+   blast
+
+== Additional Information
+
+This will not leave stones unturned.
