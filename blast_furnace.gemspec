@@ -15,6 +15,7 @@ EOF
   spec.files = Dir['lib/**/*'] + Dir['bin/*'] + ['README.rdoc', 'MIT-LICENSE']
   spec.executables << 'blast'
 
-  spec.add_development_dependency 'rake', '~>0'
-  spec.add_development_dependency 'rspec', '~>2'
+  spec.add_development_dependency 'rake'
+  spec.add_development_dependency 'rspec'
+  spec.add_development_dependency 'aruba'
 end
