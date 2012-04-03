@@ -11,11 +11,10 @@ EOF
   spec.authors << 'Mark Ryall'
   spec.email = 'mark@ryall.name'
   spec.homepage = 'http://github.com/markryall/blast_furnace'
- 
+
   spec.files = Dir['lib/**/*'] + Dir['bin/*'] + ['README.rdoc', 'MIT-LICENSE']
   spec.executables << 'blast'
 
-  spec.add_development_dependency 'rake', '~>0.8.7'
-  spec.add_development_dependency 'rspec', '~>1.3.0'
-  spec.add_development_dependency 'gemesis', '0.0.4'
+  spec.add_development_dependency 'rake', '~>0'
+  spec.add_development_dependency 'rspec', '~>2'
 end
