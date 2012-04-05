@@ -16,6 +16,7 @@ EOF
   spec.executables << 'blast'
 
   spec.add_development_dependency 'rake'
+  spec.add_development_dependency 'racc'
   spec.add_development_dependency 'rspec'
   spec.add_development_dependency 'aruba'
 end
