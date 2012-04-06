@@ -7,6 +7,6 @@ task :gen do
 end
 
 desc 'execute specifications'
-task :test do
+task :test => :gen do
   sh 'rspec spec'
 end
