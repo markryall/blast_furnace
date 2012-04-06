@@ -10,11 +10,9 @@ rule
 end
 
 ---- header
-  require 'blast_furnace/lexer'
-  require 'blast_furnace/nodes'
-
+require 'blast_furnace/lexer'
+require 'blast_furnace/nodes'
 ---- inner
-  # This code will be put as-is in the Parser class.
   def parse(code, show_tokens=false)
     @lexer = BlastFurnace::Lexer.new code
     do_parse # Kickoff the parsing process

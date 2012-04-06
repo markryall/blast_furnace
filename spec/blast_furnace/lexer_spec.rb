@@ -14,5 +14,6 @@ describe BlastFurnace::Lexer do
     EOF
     lexer.next.should == [:class, nil]
     lexer.next.should == [:identifier, "AClass"]
+    lexer.next.should == nil
   end
 end
