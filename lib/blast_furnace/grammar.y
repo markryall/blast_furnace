@@ -19,14 +19,13 @@ rule
 end
 
 ---- header
-require 'blast_furnace/lexer'
 require 'blast_furnace/nodes'
 ---- inner
-  def parse code
-    @lexer = BlastFurnace::Lexer.new code
+  def parse lexer
+    @lexer = lexer
     do_parse # Kickoff the parsing process
   end
 
   def next_token
-    @lexer.next
+    @lexer.shift
   end

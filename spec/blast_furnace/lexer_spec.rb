@@ -4,7 +4,7 @@ describe BlastFurnace::Lexer do
   def lex code
     lexer = BlastFurnace::Lexer.new code
     tokens = []
-    while token = lexer.next
+    while token = lexer.shift
       tokens << token
     end
     tokens

@@ -23,7 +23,7 @@ class BlastFurnace::Lexer
     end
   end
 
-  def next
+  def shift
     @fiber.resume
   end
 end

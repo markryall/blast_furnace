@@ -6,19 +6,18 @@
 
 require 'racc/parser.rb'
 
-require 'blast_furnace/lexer'
 require 'blast_furnace/nodes'
 module BlastFurnace
   class Parser < Racc::Parser
 
-module_eval(<<'...end grammar.y/module_eval...', 'grammar.y', 25)
-  def parse code
-    @lexer = BlastFurnace::Lexer.new code
+module_eval(<<'...end grammar.y/module_eval...', 'grammar.y', 24)
+  def parse lexer
+    @lexer = lexer
     do_parse # Kickoff the parsing process
   end
 
   def next_token
-    @lexer.next
+    @lexer.shift
   end
 ...end grammar.y/module_eval...
 ##### State transition tables begin ###
