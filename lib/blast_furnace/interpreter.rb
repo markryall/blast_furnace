@@ -3,16 +3,13 @@ require 'fileutils'
 module BlastFurnace
 end
 
+Context = Struct.new :destination, :namespace
+
 class BlastFurnace::Interpreter
   def interpret destination, *expressions
-    expressions.each do |clazz|
-      FileUtils.mkdir_p destination
-      File.open("#{destination}/#{clazz.name}.java", "w") do |io|
-      io.puts <<EOF
-public class #{clazz.name} {
-}
-EOF
-      end
+    context = Context.new destination
+    expressions.each do |node|
+      node.eval context
     end
   end
 end
