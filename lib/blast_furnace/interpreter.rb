@@ -8,8 +8,6 @@ Context = Struct.new :destination, :namespace
 class BlastFurnace::Interpreter
   def interpret destination, *expressions
     context = Context.new destination
-    expressions.each do |node|
-      node.eval context
-    end
+    expressions.each { |node| node.eval context }
   end
 end
