@@ -6,15 +6,11 @@ token identifier
 rule
   Root:
     /* nothing */        { result = [] }
-  | Expressions          { result = val[0] }
+  | Classes              { result = val[0] }
   ;
 
-  Expressions:
-    Expression           { result = val }
-  ;
-
-  Expression:
-    Class                { result = val[0] }
+  Classes:
+    Class                { result = val }
   ;
 
   Class:

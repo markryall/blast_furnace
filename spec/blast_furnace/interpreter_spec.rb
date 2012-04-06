@@ -3,8 +3,8 @@ require 'blast_furnace/interpreter'
 describe BlastFurnace::Interpreter do
   let(:interpreter) { BlastFurnace::Interpreter.new }
 
-  def interpret *tokens
-    interpreter.interpret *tokens
+  def interpret *classes
+    interpreter.interpret *classes
   end
 
   it 'should generate nothing from empty token list' do
@@ -12,11 +12,13 @@ describe BlastFurnace::Interpreter do
     interpret
   end
 
-  it 'should generate simple class' do
-    interpreter.should_receive(:puts).with <<EOF
+  it 'should generate a single class' do
+    io = stub 'io'
+    File.should_receive(:open).with('src/AClass.java', 'w').and_yield io
+    io.should_receive(:puts).with <<EOF
 public class AClass {
 }
 EOF
-    interpret [:class, 'AClass']
+    interpret ClassNode.new('AClass')
   end
 end
