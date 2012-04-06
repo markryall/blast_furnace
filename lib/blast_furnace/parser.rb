@@ -6,14 +6,12 @@
 
 require 'racc/parser.rb'
 
-  require 'blast_furnace/lexer'
-  require 'blast_furnace/nodes'
-
+require 'blast_furnace/lexer'
+require 'blast_furnace/nodes'
 module BlastFurnace
   class Parser < Racc::Parser
 
-module_eval(<<'...end grammar.y/module_eval...', 'grammar.y', 17)
-  # This code will be put as-is in the Parser class.
+module_eval(<<'...end grammar.y/module_eval...', 'grammar.y', 16)
   def parse(code, show_tokens=false)
     @lexer = BlastFurnace::Lexer.new code
     do_parse # Kickoff the parsing process
