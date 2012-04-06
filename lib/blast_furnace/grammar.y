@@ -5,6 +5,11 @@ token identifier
 
 rule
   Root:
+    /* nothing */       { result = [] }
+  | Expression          { result = val[0] }
+  ;
+
+  Expression:
     class identifier    { result = [:class, val[1]] }
   ;
 end
