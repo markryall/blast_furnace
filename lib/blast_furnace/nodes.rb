@@ -1,0 +1,1 @@
+ClassNode = Struct.new :name
