@@ -1,7 +1,6 @@
 class ClassNode < Struct.new :name
   def eval context
-    context.namespace ||= ''
-    path = "#{context.destination}/#{context.namespace}/#{name}.java"
+    path = build_path context.destination, context.namespace
     FileUtils.mkdir_p File.dirname path
     File.open(path, 'w') do |io|
     io.puts <<EOF
@@ -11,8 +10,14 @@ EOF
     end
   end
 
+  def build_path destination, namespace
+    namespace ?
+      "#{destination}/#{namespace}/#{name}.java" :
+      "#{destination}/#{name}.java"
+  end
+
   def package_declaration namespace
-    namespace.empty? ? '' : <<EOF
+    namespace ? <<EOF : ''
 package #{namespace.gsub('/','.')};
 
 EOF
