@@ -9,7 +9,14 @@ describe BlastFurnace::Parser do
     parse.should == []
   end
 
-  it 'should parse simple class declaration' do
+  it 'should parse class declaration' do
     parse([:class, nil],[:identifier, 'AClass']).should == [ClassNode.new('AClass')]
+  end
+
+  it 'should parse namespace declaration' do
+    parse(
+      [:in, nil],[:identifier, 'com/organisation/application'],
+      [:class, nil],[:identifier, 'AClass']
+    ).should == [NamespaceNode.new('com/organisation/application'),ClassNode.new('AClass')]
   end
 end

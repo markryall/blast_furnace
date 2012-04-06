@@ -10,7 +10,7 @@ require 'blast_furnace/nodes'
 module BlastFurnace
   class Parser < Racc::Parser
 
-module_eval(<<'...end grammar.y/module_eval...', 'grammar.y', 24)
+module_eval(<<'...end grammar.y/module_eval...', 'grammar.y', 34)
   def parse lexer
     @lexer = lexer
     do_parse # Kickoff the parsing process
@@ -23,47 +23,54 @@ module_eval(<<'...end grammar.y/module_eval...', 'grammar.y', 24)
 ##### State transition tables begin ###
 
 racc_action_table = [
-     4,     5,     6,     7 ]
+     6,     7,     6,     7,    10,     8,    11,    12 ]
 
 racc_action_check = [
-     0,     1,     4,     5 ]
+     0,     0,     2,     2,     6,     1,     7,     8 ]
 
 racc_action_pointer = [
-    -2,     1,   nil,   nil,    -1,     3,   nil,   nil ]
+    -2,     5,     0,   nil,   nil,   nil,     0,     2,     7,   nil,
+   nil,   nil,   nil ]
 
 racc_action_default = [
-    -1,    -5,    -2,    -3,    -5,    -5,    -4,     8 ]
+    -1,    -9,    -2,    -3,    -5,    -6,    -9,    -9,    -9,    -4,
+    -7,    -8,    13 ]
 
 racc_goto_table = [
-     1,     2,     3 ]
+     3,     2,     9,     1 ]
 
 racc_goto_check = [
-     1,     2,     3 ]
+     3,     2,     3,     1 ]
 
 racc_goto_pointer = [
-   nil,     0,     1,     2 ]
+   nil,     3,     1,     0,   nil,   nil ]
 
 racc_goto_default = [
-   nil,   nil,   nil,   nil ]
+   nil,   nil,   nil,   nil,     4,     5 ]
 
 racc_reduce_table = [
   0, 0, :racc_error,
-  0, 5, :_reduce_1,
-  1, 5, :_reduce_2,
-  1, 6, :_reduce_3,
-  2, 7, :_reduce_4 ]
+  0, 6, :_reduce_1,
+  1, 6, :_reduce_2,
+  1, 7, :_reduce_3,
+  2, 7, :_reduce_4,
+  1, 8, :_reduce_5,
+  1, 8, :_reduce_6,
+  2, 9, :_reduce_7,
+  2, 10, :_reduce_8 ]
 
-racc_reduce_n = 5
+racc_reduce_n = 9
 
-racc_shift_n = 8
+racc_shift_n = 13
 
 racc_token_table = {
   false => 0,
   :error => 1,
   :class => 2,
-  :identifier => 3 }
+  :in => 3,
+  :identifier => 4 }
 
-racc_nt_base = 4
+racc_nt_base = 5
 
 racc_use_result_var = true
 
@@ -87,11 +94,14 @@ Racc_token_to_s_table = [
   "$end",
   "error",
   "class",
+  "in",
   "identifier",
   "$start",
   "Root",
-  "Classes",
-  "Class" ]
+  "Nodes",
+  "Node",
+  "Class",
+  "Namespace" ]
 
 Racc_debug_parser = false
 
@@ -99,30 +109,58 @@ Racc_debug_parser = false
 
 # reduce 0 omitted
 
-module_eval(<<'.,.,', 'grammar.y', 7)
+module_eval(<<'.,.,', 'grammar.y', 8)
   def _reduce_1(val, _values, result)
      result = [] 
     result
   end
 .,.,
 
-module_eval(<<'.,.,', 'grammar.y', 8)
+module_eval(<<'.,.,', 'grammar.y', 9)
   def _reduce_2(val, _values, result)
      result = val[0] 
     result
   end
 .,.,
 
-module_eval(<<'.,.,', 'grammar.y', 12)
+module_eval(<<'.,.,', 'grammar.y', 13)
   def _reduce_3(val, _values, result)
      result = val 
     result
   end
 .,.,
 
-module_eval(<<'.,.,', 'grammar.y', 16)
+module_eval(<<'.,.,', 'grammar.y', 14)
   def _reduce_4(val, _values, result)
+     result = val[0] << val[1]
+    result
+  end
+.,.,
+
+module_eval(<<'.,.,', 'grammar.y', 17)
+  def _reduce_5(val, _values, result)
+     result = val[0] 
+    result
+  end
+.,.,
+
+module_eval(<<'.,.,', 'grammar.y', 18)
+  def _reduce_6(val, _values, result)
+     result = val[0] 
+    result
+  end
+.,.,
+
+module_eval(<<'.,.,', 'grammar.y', 22)
+  def _reduce_7(val, _values, result)
      result = ClassNode.new val[1] 
+    result
+  end
+.,.,
+
+module_eval(<<'.,.,', 'grammar.y', 26)
+  def _reduce_8(val, _values, result)
+     result = NamespaceNode.new val[1] 
     result
   end
 .,.,
