@@ -2,8 +2,7 @@ require 'blast_furnace/parser'
 
 describe BlastFurnace::Parser do
   def parse *tokens
-    parser = BlastFurnace::Parser.new
-    parser.parse tokens
+    BlastFurnace::Parser.new.parse tokens
   end
 
   it 'should parse empty token list' do
