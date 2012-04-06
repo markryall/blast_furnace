@@ -1,5 +1,3 @@
-require_relative '../spec_helper'
-
 require 'blast_furnace/parser'
 
 describe BlastFurnace::Parser do
