@@ -1,6 +1,5 @@
 Feature: Generating a simple java class
 
-@wip
 Scenario: creating an empty class without a namespace
   Given a file named "class.blast" with:
     """
@@ -9,6 +8,7 @@ Scenario: creating an empty class without a namespace
   When I run `blast src class.blast`
   Then the file "src/ClassAClass.java" should contain exactly:
     """
-    class ClassAClass {
+    public class ClassAClass {
     }
+    
     """
