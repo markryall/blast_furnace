@@ -19,4 +19,11 @@ describe BlastFurnace::Lexer do
   it 'should tokenise class declaration' do
     lex('class AClass').should == [[:class, nil],[:identifier, 'AClass']]
   end
+
+  it 'should tokenise namespace declaration' do
+    lex('in a/b/c class AClass').should == [
+      [:in, nil],[:identifier, 'a/b/c'],
+      [:class, nil],[:identifier, 'AClass']
+    ]
+  end
 end
