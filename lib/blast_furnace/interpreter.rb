@@ -1,10 +1,13 @@
+require 'fileutils'
+
 module BlastFurnace
 end
 
 class BlastFurnace::Interpreter
-  def interpret *expressions
+  def interpret destination, *expressions
     expressions.each do |clazz|
-      File.open("src/#{clazz.name}.java", "w") do |io|
+      FileUtils.mkdir_p destination
+      File.open("#{destination}/#{clazz.name}.java", "w") do |io|
       io.puts <<EOF
 public class #{clazz.name} {
 }

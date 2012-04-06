@@ -6,7 +6,7 @@ Scenario: creating an empty class without a namespace
     """
     class ClassAClass
     """
-  When I run `blast class.blast src`
+  When I run `blast src class.blast`
   Then the file "src/ClassAClass.java" should contain exactly:
     """
     class ClassAClass {
