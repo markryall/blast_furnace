@@ -11,8 +11,8 @@ require 'blast_furnace/nodes'
 module BlastFurnace
   class Parser < Racc::Parser
 
-module_eval(<<'...end grammar.y/module_eval...', 'grammar.y', 21)
-  def parse(code, show_tokens=false)
+module_eval(<<'...end grammar.y/module_eval...', 'grammar.y', 29)
+  def parse code
     @lexer = BlastFurnace::Lexer.new code
     do_parse # Kickoff the parsing process
   end
@@ -24,38 +24,40 @@ module_eval(<<'...end grammar.y/module_eval...', 'grammar.y', 21)
 ##### State transition tables begin ###
 
 racc_action_table = [
-     3,     4,     5,     6 ]
+     5,     6,     7,     8 ]
 
 racc_action_check = [
-     0,     1,     3,     4 ]
+     0,     1,     5,     6 ]
 
 racc_action_pointer = [
-    -2,     1,   nil,    -1,     3,   nil,   nil ]
+    -2,     1,   nil,   nil,   nil,    -1,     3,   nil,   nil ]
 
 racc_action_default = [
-    -1,    -4,    -2,    -4,    -4,    -3,     7 ]
+    -1,    -6,    -2,    -3,    -4,    -6,    -6,    -5,     9 ]
 
 racc_goto_table = [
-     1,     2 ]
+     1,     2,     3,     4 ]
 
 racc_goto_check = [
-     1,     2 ]
+     1,     2,     3,     4 ]
 
 racc_goto_pointer = [
-   nil,     0,     1 ]
+   nil,     0,     1,     2,     3 ]
 
 racc_goto_default = [
-   nil,   nil,   nil ]
+   nil,   nil,   nil,   nil,   nil ]
 
 racc_reduce_table = [
   0, 0, :racc_error,
   0, 5, :_reduce_1,
   1, 5, :_reduce_2,
-  2, 6, :_reduce_3 ]
+  1, 6, :_reduce_3,
+  1, 7, :_reduce_4,
+  2, 8, :_reduce_5 ]
 
-racc_reduce_n = 4
+racc_reduce_n = 6
 
-racc_shift_n = 7
+racc_shift_n = 9
 
 racc_token_table = {
   false => 0,
@@ -90,7 +92,9 @@ Racc_token_to_s_table = [
   "identifier",
   "$start",
   "Root",
-  "Expression" ]
+  "Expressions",
+  "Expression",
+  "Class" ]
 
 Racc_debug_parser = false
 
@@ -114,7 +118,21 @@ module_eval(<<'.,.,', 'grammar.y', 8)
 
 module_eval(<<'.,.,', 'grammar.y', 12)
   def _reduce_3(val, _values, result)
-     result = [:class, val[1]] 
+     result = val 
+    result
+  end
+.,.,
+
+module_eval(<<'.,.,', 'grammar.y', 16)
+  def _reduce_4(val, _values, result)
+     result = val[0] 
+    result
+  end
+.,.,
+
+module_eval(<<'.,.,', 'grammar.y', 20)
+  def _reduce_5(val, _values, result)
+     result = ClassNode.new val[1] 
     result
   end
 .,.,

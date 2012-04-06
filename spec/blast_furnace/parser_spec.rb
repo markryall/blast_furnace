@@ -12,7 +12,7 @@ describe BlastFurnace::Parser do
   end
 
   it 'should parse simple class declaration' do
-    parser.parse(<<-EOF).should == [:class, 'AClass']
+    parser.parse(<<-EOF).should == [ClassNode.new('AClass')]
     class AClass
     EOF
   end

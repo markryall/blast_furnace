@@ -5,12 +5,20 @@ token identifier
 
 rule
   Root:
-    /* nothing */       { result = [] }
-  | Expression          { result = val[0] }
+    /* nothing */        { result = [] }
+  | Expressions          { result = val[0] }
+  ;
+
+  Expressions:
+    Expression           { result = val }
   ;
 
   Expression:
-    class identifier    { result = [:class, val[1]] }
+    Class                { result = val[0] }
+  ;
+
+  Class:
+    class identifier     { result = ClassNode.new val[1] }
   ;
 end
 
@@ -18,7 +26,7 @@ end
 require 'blast_furnace/lexer'
 require 'blast_furnace/nodes'
 ---- inner
-  def parse(code, show_tokens=false)
+  def parse code
     @lexer = BlastFurnace::Lexer.new code
     do_parse # Kickoff the parsing process
   end
