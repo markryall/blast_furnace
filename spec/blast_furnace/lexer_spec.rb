@@ -3,17 +3,22 @@ require_relative '../spec_helper'
 require 'blast_furnace/lexer'
 
 describe BlastFurnace::Lexer do
-  def lexer code=nil
-    @lexer = BlastFurnace::Lexer.new code unless @lexer
-    @lexer
+  def lex code
+    lexer = BlastFurnace::Lexer.new code
+    tokens = []
+    while token = lexer.next
+      tokens << token
+    end
+    tokens
   end
 
-  it "should tokenise class declaration" do
-    lexer <<-EOF
-    class AClass
-    EOF
-    lexer.next.should == [:class, nil]
-    lexer.next.should == [:identifier, "AClass"]
-    lexer.next.should == nil
+  ['', nil,' '].each do |code|
+    it "should tokenise #{code.inspect} to []" do
+      lex(code).should == []
+    end
+  end
+
+  it 'should tokenise class declaration' do
+    lex('class AClass').should == [[:class, nil],[:identifier, 'AClass']]
   end
 end
