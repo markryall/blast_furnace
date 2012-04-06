@@ -28,3 +28,18 @@ Scenario: creating an empty class in a namespace with in clause
     }
 
     """
+
+Scenario: creating an empty class in a namespace in class name
+  Given a file named "class.blast" with:
+    """
+    class com/organisation/application/ClassyClass
+    """
+  When I run `blast src class.blast`
+  Then the file "src/com/organisation/application/ClassyClass.java" should contain exactly:
+    """
+    package com.organisation.application;
+
+    public class ClassyClass {
+    }
+
+    """

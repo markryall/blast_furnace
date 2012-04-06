@@ -20,6 +20,6 @@ describe BlastFurnace::Interpreter do
 public class AClass {
 }
 EOF
-    interpret ClassNode.new('AClass')
+    interpret BlastFurnace::ClassNode.new('AClass')
   end
 end

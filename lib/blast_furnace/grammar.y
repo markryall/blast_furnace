@@ -20,16 +20,17 @@ rule
   ;
 
   Class:
-    class identifier     { result = ClassNode.new val[1] }
+    class identifier     { result = BlastFurnace::ClassNode.new val[1] }
   ;
 
   Namespace:
-    in identifier        { result = NamespaceNode.new val[1] }
+    in identifier        { result = BlastFurnace::NamespaceNode.new val[1] }
   ;
 end
 
 ---- header
-require 'blast_furnace/nodes'
+require 'blast_furnace/class_node'
+require 'blast_furnace/namespace_node'
 ---- inner
   def parse lexer
     @lexer = lexer

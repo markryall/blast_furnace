@@ -6,11 +6,12 @@
 
 require 'racc/parser.rb'
 
-require 'blast_furnace/nodes'
+require 'blast_furnace/class_node'
+require 'blast_furnace/namespace_node'
 module BlastFurnace
   class Parser < Racc::Parser
 
-module_eval(<<'...end grammar.y/module_eval...', 'grammar.y', 34)
+module_eval(<<'...end grammar.y/module_eval...', 'grammar.y', 35)
   def parse lexer
     @lexer = lexer
     do_parse # Kickoff the parsing process
@@ -153,14 +154,14 @@ module_eval(<<'.,.,', 'grammar.y', 18)
 
 module_eval(<<'.,.,', 'grammar.y', 22)
   def _reduce_7(val, _values, result)
-     result = ClassNode.new val[1] 
+     result = BlastFurnace::ClassNode.new val[1] 
     result
   end
 .,.,
 
 module_eval(<<'.,.,', 'grammar.y', 26)
   def _reduce_8(val, _values, result)
-     result = NamespaceNode.new val[1] 
+     result = BlastFurnace::NamespaceNode.new val[1] 
     result
   end
 .,.,
