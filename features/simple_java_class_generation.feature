@@ -10,5 +10,5 @@ Scenario: creating an empty class without a namespace
     """
     public class ClassAClass {
     }
-    
+
     """
