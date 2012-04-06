@@ -16,12 +16,8 @@ describe BlastFurnace::Parser do
   end
 
   it 'should parse namespace declaration' do
-    parse(
-      [:in, nil],[:identifier, 'com/organisation/application'],
-      [:class, nil],[:identifier, 'AClass']
-    ).should == [
-      BlastFurnace::NamespaceNode.new('com/organisation/application'),
-      BlastFurnace::ClassNode.new('AClass')
+    parse([:in, nil],[:identifier, 'com/organisation/application']).should == [
+      BlastFurnace::NamespaceNode.new('com/organisation/application')
     ]
   end
 end
