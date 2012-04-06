@@ -4,6 +4,7 @@ end
 class BlastFurnace::Lexer
   KEYWORDS = %w{class}
   def initialize string
+    string ||= ''
     @fiber = Fiber.new do
       index = 0
       while index < string.size

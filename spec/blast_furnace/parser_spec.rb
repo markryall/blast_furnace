@@ -5,6 +5,10 @@ require 'blast_furnace/parser'
 describe BlastFurnace::Parser do
   let(:parser) { BlastFurnace::Parser.new }
 
+  it 'should parse nil' do
+    parser.parse(nil).should == []
+  end
+
   it 'should parse nothing' do
     parser.parse('').should == []
   end
